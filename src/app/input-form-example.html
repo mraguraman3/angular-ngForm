@@ -1,0 +1,61 @@
+
+
+ <form #heroForm="ngForm"   myParam = "directive param"  test-directive>
+    
+
+<mat-form-field appearance="fill">
+  <mat-label>Roles</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let Role of Roles" [value]="Role.name" style="min-height: 48px; line-height: 1.15; height: auto; padding: 4px 8px; white-space: normal;">
+     <mat-grid-list cols="2" rowHeight="20px">
+      <mat-grid-tile>Name</mat-grid-tile>
+      <mat-grid-tile>{{Role.name}}</mat-grid-tile>
+      <mat-grid-tile>Desc</mat-grid-tile>
+      <mat-grid-tile>{{Role.description}}</mat-grid-tile>
+    </mat-grid-list>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+ 
+
+     <div *ngFor="let c of contentarr; let i = index;">
+      <input
+      *ngIf="c.content==4"
+      #nameRef = "ngModel"
+      name="inputarea{{i}}"
+       id="inputarea{{i}}"
+       pattern="^[0-9]+(\.[0-9]+)+$"
+      [(ngModel)]="c.content" />
+     
+           test:   {{heroForm.errors?.isNegative}}
+        
+     <input type="button" (click)="log(c)" value="hide"/>
+      <input type="button" (click)="log1(c)" value="show"/>
+    </div>
+    
+
+    <div *ngFor="let c of contentarr; let i = index;" ngModelGroup="med"
+      address-directive
+      myParam = "child param"
+     #med="ngModelGroup">
+     <input
+      name="address{{i}}"   
+      [(ngModel)]="address" />
+
+       <input
+      name="pincode{{i}}"   
+      [(ngModel)]="pincode" />
+       <span>
+      Is mumbai:    {{med.errors?.isMumbai}}
+    </span>
+    </div>
+   
+    
+</form>
+
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
